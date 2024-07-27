@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt')
 module.exports = {
   create,
   login,
-
+  checkToken,
 }
 async function create(req, res) {
   try {
@@ -44,7 +44,7 @@ async function login(req, res) {
     }
     const token = createJWT(user);
     console.log('Login successful, returning token');
-    res.json({ token });
+    res.json( token );
     console.log(token)
   } catch (err) {
     console.error('Login error:', err);
@@ -52,7 +52,11 @@ async function login(req, res) {
   }
 }
 
-
+function checkToken(req, res) {
+  // req.user will always be there for you when a token is sent
+  console.log('req.user', req.user);
+  res.json(req.exp);
+}
 /*-- Helper Functions --*/
 
 function createJWT(user) {

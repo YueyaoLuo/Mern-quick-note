@@ -1,4 +1,4 @@
-// LoginForm.jsx
+// src/components/LoginForm/LoginForm.jsx
 
 import { useState } from "react";
 import * as usersService from "../../utilities/users-service";
@@ -16,15 +16,13 @@ export default function LoginForm({ setUser }) {
   }
 
   async function handleSubmit(evt) {
-    // Prevent form from being submitted to the server
     evt.preventDefault();
     try {
-      console.log("Logging in with credentials:", credentials);
       const user = await usersService.login(credentials);
-      if(!user) throw error ("no user found")
-      console.log("user logged in", user);
+      // console.log("Login User: ", user);
       setUser(user);
-    } catch {
+    } catch (err) {
+      // console.error("Login Error: ", err.message);
       setError("Log In Failed - Try Again");
     }
   }

@@ -12,7 +12,7 @@ export default function App() {
 
   return (
     <main className="App">
-      <p>{JSON.stringify(user)}</p>
+      
       {user ? (
         <>
         <NavBar user={user}/>
