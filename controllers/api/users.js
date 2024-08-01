@@ -45,7 +45,6 @@ async function login(req, res) {
     const token = createJWT(user);
     console.log('Login successful, returning token');
     res.json( token );
-    console.log(token)
   } catch (err) {
     console.error('Login error:', err);
     res.status(400).json({ message: 'Bad Credentials' });
